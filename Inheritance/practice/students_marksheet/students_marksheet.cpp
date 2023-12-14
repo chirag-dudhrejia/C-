@@ -62,7 +62,7 @@ void Marksheet::output()
     cout<<"\nOOCP    : "<<oocp;
     cout<<"\nDSA     : "<<dsa;
     cout<<"\nDBMS    : "<<dbms;
-    cout<<"\nPercent : "<<calculate();
+    cout<<"\nPercent : "<<calculate()<<"\n";
 }
 
 float Marksheet::calculate()
@@ -85,19 +85,53 @@ int search(Marksheet m[], int key, int n)
 
 int main()
 {
-    int n = 3;
+    int count = 0;
+    int option = 1;
     int key;
-    Marksheet m[3];
+    Marksheet ms[20];
 
-    for (int i = 0; i < n; i++)
+    cout<<"\nInput details of student "<<count+1<<"\n";
+    ms[count++].input();
+
+    while (option != 0)
     {
-        cout<<"\nInput details of student "<<i+1<<"\n";
-        m[i].input();
-    }
+        cout<<"\nChoose task to perform.\n"
+            <<"1. Insert data for more than one student.\n"
+            <<"2. Insert data for 1 student.\n"
+            <<"3. Get data of student using roll no.\n"
+            <<"0. Exit.\n";
+        cin>>option;
 
-    cout<<"\nEnter roll no of student to see details : ";
-    cin>>key;
-    m[search(m, key, n)].output();
+        if (option == 1)
+        {
+            int n;
+            cout<<"How many student's data you want to enter? : ";
+            cin>>n;
+            while (n--)
+            {
+                cout<<"\nInput details of student "<<count+1<<"\n";
+                ms[count++].input();
+            }
+            
+        }
+        else if (option == 2)
+        {
+            cout<<"\nInput details of student "<<count+1<<"\n";
+            ms[count++].input();
+        }
+        else if (option == 3)
+        {
+            cout<<"Enter roll no to see details : ";
+            cin>>key;
+            cout<<"Details.\n";
+            ms[search(ms, key, count)].output();
+        }
+        else if (option != 0)
+        {
+            cout<<"Invelid Input.\nEnter Again.\n";
+        }
+        
+    }
 
     return 0;
 }
