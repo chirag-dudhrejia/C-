@@ -1,0 +1,3 @@
+Hello, This progrem is written
+using get and put
+in text file
