@@ -24,8 +24,8 @@ public:
 };
 void Department::show_data()
 {
-    cout<<setw(15)<<"\nDepartment No."<<" : "<<dept_no;
-    cout<<setw(15)<<"\nDepartment"<<" : "<<dept_name;
+    cout<<"|"<<setw(10)<<dept_no
+        <<"|"<<setw(25)<<dept_name<<"|\n";
 }
 
 class Employee: public Person
@@ -40,19 +40,31 @@ public:
 };
 void Employee::show_data()
 {
-    cout<<left;
-    cout<<setw(15)<<"\nEmployee ID"<<" : "<<empid;
-    cout<<setw(15)<<"\nName"<<" : "<<name;
-    cout<<setw(15)<<"\nAge"<<" : "<<age;
-    cout<<setw(15)<<"\nDesignation"<<" : "<<designation;
+    cout<<"|"<<setw(6)<<empid
+        <<"|"<<setw(25)<<name
+        <<"|"<<setw(6)<<age
+        <<"|"<<setw(25)<<designation;
     dept.show_data();
 }
 
 int main()
 {
-    Employee e;
-    e = Employee(22, "Chirag", 101, "Machine Learning", "Data Analyst", 12);
+    string saperator = "+------+-------------------------+------+-------------------------+----------+-------------------------+\n";
+    Employee e[3];
+    e[0] = Employee(22, "Chirag", 101, "Machine Learning", "Data Analyst", 12);
+    e[1] = Employee(21, "Jigar", 102, "Artificial Intelligence", "Data Scientist", 14);
+    e[2] = Employee(22, "Rohan", 105, "Developement", "Software Developer", 25);
 
-    e.show_data();
+    cout<<left<<saperator;
+    cout<<"|"<<setw(6)<<"Emp ID"<<"|"<<setw(25)<<"Name"<<"|"<<setw(6)<<"Age"<<"|"<<setw(25)<<"Designation"<<"|"<<setw(10)<<"Dept. No."<<"|"<<setw(25)<<"Dept. Name"<<"|\n";
+    cout<<saperator;
+
+    for (int i = 0; i < 3; i++)
+    {
+        e[i].show_data();
+        cout<<saperator;
+
+    }
+    
     return 0;
 }
