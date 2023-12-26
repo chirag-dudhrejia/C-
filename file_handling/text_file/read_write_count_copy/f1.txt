@@ -1,0 +1,4 @@
+Hello this program is
+to practice file handline
+in c++
+it is fun.
