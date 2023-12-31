@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-    float int_arr[] = {2.3, 4.5, 6.7, 8.75};
+    long num;
 
-    const int size = *(&int_arr + 1) - int_arr;
+    cin>>num;
 
-    cout<<size<<"\n";
+    long result = num*num;
 
-    return 0;
+    cout<<result;
 }
