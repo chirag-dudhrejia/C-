@@ -112,11 +112,13 @@ int main()
     string name, contact;
 	
     // for testing
-	m.push_back(Marksheet(101, "Chirag Dudhrejia", "82943859496", 79, 83, 92));
+	m.push_back(Marksheet(104, "Chirag Dudhrejia", "82948859496", 19, 38, 28));
 	m.push_back(Marksheet(102, "Jigar Dudhrejia", "82945859496", 96, 94, 99));
 	m.push_back(Marksheet(103, "Sahadev Nai", "82943857496", 84, 76, 29));
-	m.push_back(Marksheet(104, "Gautam Chauhan", "82948859496", 19, 38, 28));
+	m.push_back(Marksheet(101, "Gautam Chauhan", "82943859496", 79, 83, 92));
+	m.push_back(Marksheet(101, "Jatin Solanki", "82944559496", 68, 88, 90));
 
+    //for user input
     // cout<<"How many records to enter? : ";
     // cin>>n;
 
@@ -133,11 +135,50 @@ int main()
     //     m.push_back(Marksheet(roll, name, contact, mark1, mark2, mark3));
     //     n--;
     // }
+
+    //writing into file
+    ofstream out_file("file.txt", ios::out | ios::binary | ios::trunc);
+    if (!out_file.is_open())
+    {
+        cout<<"Failed to open file\n";
+    }
+
+    vector<Marksheet>::iterator i;
+
+    for (i = m.begin(); i < m.end(); i++)
+    {
+        out_file.write((char*)&*i, sizeof(*i));
+        if (out_file.fail())
+        {
+            cout<<"Failed To write into file\n";
+            break;
+        }
+    }
+    out_file.close();
+
+
+    //reading from file
+    vector<Marksheet> out_marks;
+    Marksheet temp;
+    ifstream read_file("file.txt", ios::in | ios::binary);
+    if (!read_file.is_open())
+    {
+        cout<<"file failed to open.\n";
+    }
+
+    while (read_file.good())
+    {
+        read_file.read((char*)&temp, sizeof(temp));
+        out_marks.push_back(temp);
+    }
+    read_file.close();
     
+    
+    // Printing output
     cout<<"Enter Roll no. to get result : ";
     cin>>roll;
     system("cls");
-	m[search(m, 103)].output();
+	out_marks[search(m, roll)].output();
 
 	return 0;
 }
